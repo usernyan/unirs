@@ -1,0 +1,29 @@
+#TAG: 			The kind of package to be installed,
+#				can be empty, 'AUR', 'PKGBUILD', or 'GIT_MAKEINSTALL'
+#NAME:			Displayed while installing (SOURCE is used if NAME is empty).
+#				Used as a folder name when installing from git repos
+#SOURCE: 		The source of the file.
+#				Either the name in main repo/aur,
+#				a link directly to a PKGBUILD,
+#				or a link to a Git repo that uses 'make install'
+#PURPOSE: 		Displayed while installing, should be a verb phrase
+
+#TAG,NAME,SOURCE,PURPOSE
+,,xorg-server,"is the graphical server"
+,,xorg-xwininfo,"allows querying information about windows"
+,,xorg-xinit,"starts the graphical server"
+,,bash,"is the shell"
+,,helix,"is a terminal-based text editor"
+,,sxhkd,"is a daemon for keyboard shortcuts"
+,,dunst,"is a daemon for desktop notifications"
+,,pipewire,"is the audio system"
+,,picom
+,,mpv,"is the media player"
+,,mpv-mpris,"makes mpv controllable"
+,,playerctl,"controls media playback"
+AUR,,otf-atkinson-hyperlegible,"is a highly legible font"
+PKGBUILD,atkinson-hypermono,https://raw.githubusercontent.com/usernyan/atkinson-hypermono-archpkg/master/PKGBUILD,"is a highly legible monospaced font"
+GIT_MAKEINSTALL,st,https://github.com/usernyan/st-nyan.git,"is a simple terminal emulator."
+,,hacksaw,"is for selecting screen areas."
+,,shotgun,"is for taking screenshots of screen areas"
+GIT_MAKEINSTALL,screenshot-script,https://github.com/usernyan/screenshot-script.git,"is for taking screenshots"
