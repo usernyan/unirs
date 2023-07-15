@@ -25,8 +25,9 @@ get_username_and_password() {
 add_user_with_pass() {
   name="$1"
   pass="$2"
+  [ -z "$3" ] && user_shell=/bin/bash || user_shell="$3"
   whiptail --infobox "Adding user, setting password..." 7 50
-  useradd -m -g wheel -s /bin/bash "$name" > /dev/null 2>&1 || usermod -a -G wheel "$name" && mkdir -p /home/"$name" && chown "$name":wheel /home/"$name"
+  useradd -m -g wheel -s "$user_shell" "$name" > /dev/null 2>&1 || usermod -a -G wheel "$name" && mkdir -p /home/"$name" && chown "$name":wheel /home/"$name"
   export source_dir="/home/${name}/.local/src"
   mkdir -p "$source_dir"
   chown -R "$name":wheel "$(dirname "$source_dir")"
