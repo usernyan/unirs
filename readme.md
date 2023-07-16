@@ -1,5 +1,5 @@
 # UNIRS
-Unirs, UserNyan's Incredible Ricing Script, automatically installs my desktop environment under a given user on your arch linux system.
+UNIRS, UserNyan's Incredible Ricing Script, automatically installs my desktop environment under a given user on your arch linux system.
 
 This project borrows heavily from Luke Smith's LARBS.
 
