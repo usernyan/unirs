@@ -12,6 +12,8 @@
 ,,xorg-server,"is the graphical server"
 ,,xorg-xwininfo,"allows querying information about windows"
 ,,xorg-xinit,"starts the graphical server"
+,,xss-lock,"locks the screen when appropriate"
+,,xsecurelock,"locks the screen securely"
 ,,bash,"is the shell"
 ,,helix,"is a terminal-based text editor"
 ,,sxhkd,"is a daemon for keyboard shortcuts"
