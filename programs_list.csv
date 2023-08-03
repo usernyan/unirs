@@ -23,6 +23,7 @@
 ,,mpv,"is the media player"
 ,,mpv-mpris,"makes mpv controllable"
 ,,playerctl,"controls media playback"
+,,blueman,"provides a GUI for bluetooth"
 AUR,,otf-atkinson-hyperlegible,"is a highly legible font"
 PKGBUILD,atkinson-hypermono,https://raw.githubusercontent.com/usernyan/atkinson-hypermono-archpkg/master/PKGBUILD,"is a highly legible monospaced font"
 GIT_MAKEINSTALL,st,https://github.com/usernyan/st-nyan.git,"is a simple terminal emulator."
