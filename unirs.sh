@@ -179,6 +179,10 @@ main() {
     install_pkg "$pkg"
   done
 
+  whiptail --infobox "Synchronizing system time." 10 50
+
+  ntpd -q -g >/dev/null 2>&1
+
   add_user_with_pass "$username" "$password" || error_exit "Error creating new user"
   #forget the password, it's not needed anymore
   unset password password_2
