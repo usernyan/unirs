@@ -202,7 +202,7 @@ main() {
   install_program_list || error_exit "Error installing list of programs"
 
   #enable services
-  services=bluetooth
+  services="bluetooth NetworkManager"
   for x in $services; do
     systemctl enable --now "$x"
   done
