@@ -72,8 +72,7 @@ install_aur_pkg_manually() {
       sudo -u "$username" git -C "$working_dir" pull --force origin master
     }
   [ -d "$working_dir" ] || return 1
-  sudo -u "$username" -D "$working_dir" \
-    makepkg --clean -si --noconfirm > /dev/null 2>&1 || return 1
+  ( cd "$working_dir" && sudo -u "$username" makepkg --clean -si --noconfirm > /dev/null 2>&1) || return 1
 }
 
 install_pkg() {
@@ -85,8 +84,8 @@ install_aur_pkg() {
 }
 
 install_pkgbuild() {
-  curl -L "$1" --output "$source_dir/makepkg_temp/PKGBUILD" > /dev/nul 2>&1
-  sudo -u "$username" makepkg -si --clean --noconfirm > /dev/null 2>&1 || return 1
+  curl -L "$1" --output "$source_dir/makepkg_temp/PKGBUILD" > /dev/null 2>&1
+  (cd "$source_dir" && sudo -u "$username" makepkg -si --clean --noconfirm > /dev/null 2>&1) || return 1
 }
 
 install_git_make() {
@@ -95,8 +94,9 @@ install_git_make() {
   output_dir="$source_dir"/"$2"
   sudo -u "$username" git -C "$source_dir" clone "$1" "$output_dir" --depth 1 --single-branch --no-tags -q || {
     [ -d "$output_dir" ] || return 1
-    sudo -u "$username" -D "$output_dir" git pull
+    sudo -u "$username" git -C "$output_dir" pull
   }
+  make --silent -C "$output_dir" clean > /dev/null 2>&1
   make -C "$output_dir" > /dev/null 2>&1
   make --silent -C "$output_dir" install > /dev/null 2>&1
   unset output_dir
