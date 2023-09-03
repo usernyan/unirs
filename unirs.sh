@@ -96,7 +96,6 @@ install_git_make() {
     [ -d "$output_dir" ] || return 1
     sudo -u "$username" git -C "$output_dir" pull
   }
-  make --silent -C "$output_dir" clean > /dev/null 2>&1
   make -C "$output_dir" > /dev/null 2>&1
   make --silent -C "$output_dir" install > /dev/null 2>&1
   unset output_dir
