@@ -161,9 +161,14 @@ AUR_HELPER=yay
 PROGRAM_LIST_FILE=programs_list.csv
 #placeholder for later
 PROGRAM_LIST_FILE_SOURCE=https://example.com/programs_list.csv
-DOTFILE_REPO=/usr/src/unirs-dotfiles
+# DOTFILE_REPO=/usr/src/unirs-dotfiles
+ DOTFILE_REPO=https://github.com/usernyan/unirs-dotfiles
 
 main() {
+  #NO BEEPING
+  modprobe -r pcspkr
+  printf "%s" "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+
   # install whiptail
   pacman --noconfirm -Sy --needed libnewt || error_exit "Are you sure you\'re running as root, are on an Arch system, and have an internet connection?"
   welcome_msg || error_exit "user exited"
@@ -211,8 +216,20 @@ main() {
   drop_git_repo "$DOTFILE_REPO" /home/"$username" master
   rm -rf README.md LICENSE.txt .git
 
-  #NO BEEPING
-  printf "%s" "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+
+  #TODO: install custom firefox profile
+  # browser_dir="/home/$username/.mozilla/firefox"
+  # profiles_ini="$browser_dir/profiles.ini"
+  # sudo -u "$username" firefox --headless >/dev/null 2>&1 &
+  # sleep 1
+  # browser_profile="$( sed -n "/Default=.*\.default-release/ s/.*=//p" "$profiles_ini" )"
+  # profile_dir = "$browser_dir/$browser_profile"
+  # mkdir "$profile_dir/chrome"
+  # #copy userchrome
+  # #set user preference toolkit.legacyUserProfileCustomizations.stylesheets to true in prefs.js
+  # #and gfx.webrender.all
+  whiptail --title "Done!" \
+		--msgbox "Congrats! If there we no hidden errors, all software and config files should be in place. Log out and back in on a tty and run the \`startx\` command to enter the desktop environment. Then press \`super + shift + h\` for help." 13 80
 }
 
 main "$@"
