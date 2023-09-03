@@ -18,6 +18,7 @@
 ,,xsecurelock,"locks the screen securely"
 ,,bash,"is the shell"
 ,,helix,"is a terminal-based text editor"
+,,xclip,"lets helix use the system clipboard"
 ,,sxhkd,"is a daemon for keyboard shortcuts"
 ,,dunst,"is a daemon for desktop notifications"
 ,,pipewire,"is the audio system"
