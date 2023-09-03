@@ -229,7 +229,7 @@ main() {
   # #set user preference toolkit.legacyUserProfileCustomizations.stylesheets to true in prefs.js
   # #and gfx.webrender.all
   whiptail --title "Done!" \
-		--msgbox "Congrats! If there we no hidden errors, all software and config files should be in place. Log out and back in on a tty and run the \`startx\` command to enter the desktop environment. Then press \`super + shift + h\` for help." 13 80
+		--msgbox "Congrats! If there we no hidden errors, all software and config files should be in place. Log out and back in on a tty and run the \`startx\` command to enter the desktop environment. Then press \`super + shift + h\` for help." 10 50
 }
 
 main "$@"
