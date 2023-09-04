@@ -217,19 +217,30 @@ main() {
   rm -rf README.md LICENSE.txt .git
 
 
-  #TODO: install custom firefox profile
-  # browser_dir="/home/$username/.mozilla/firefox"
-  # profiles_ini="$browser_dir/profiles.ini"
-  # sudo -u "$username" firefox --headless >/dev/null 2>&1 &
-  # sleep 1
-  # browser_profile="$( sed -n "/Default=.*\.default-release/ s/.*=//p" "$profiles_ini" )"
-  # profile_dir = "$browser_dir/$browser_profile"
-  # mkdir "$profile_dir/chrome"
-  # #copy userchrome
-  # #set user preference toolkit.legacyUserProfileCustomizations.stylesheets to true in prefs.js
-  # #and gfx.webrender.all
+  whiptail --title Warning! \
+    --msgbox "The following will close your user's firefox. Make sure your work is saved!" 10 50
+  #TODO: create a default profile if none exist
+  pkill -u "$username" firefox
+  sudo -u "$name" firefox --headless >/dev/null 2>&1 &
+  sleep 1
+  # 1: locate the default profile
+  browser_dir="/home/$username/.mozilla/firefox"
+  profiles_ini="$browser_dir/profiles.ini"
+  browser_profile="$( sed -n "/Default=.*\..*/ s/.*=//p" "$profiles_ini" )"
+  # 2: install userChrome.css in PROFILE_DIR/chrome
+  profile_dir = "$browser_dir/$browser_profile"
+  mkdir "$profile_dir/chrome"
+  cp .local/share/userChrome.css "$profile_dir/chrome"
+  # 3: modify preferences so that:
+  #   fx.webrender.all true
+  #   toolkit.legacyUserProfileCustomizations.stylesheets true
+  cp .local/share/user.js "$profile_dir"
+  # 4: install addons
+  # TODO
+  # 5: Complete
+  pkill -u "$username" firefox
   whiptail --title "Done!" \
-		--msgbox "Congrats! If there we no hidden errors, all software and config files should be in place. Log out and back in on a tty and run the \`startx\` command to enter the desktop environment. Then press \`super + shift + h\` for help." 10 50
+		--msgbox "Congrats! If there we no hidden errors, all software and config files should be in place. Log out and back in on a tty and run the \`startx\` command to enter the desktop environment. Then press \`super + shift + h\` for help." 15 50
 }
 
 main "$@"
