@@ -24,7 +24,7 @@
 ,,pipewire,"is the audio system"
 ,,wireplumber,"controls pipewire"
 ,,pipewire-pulse,"is a pulseaudio replacement"
-,,pulsemixer,"controls audio"
+,,pulsemixer,"lets the user control audio"
 ,,picom,"is the compositor"
 ,,mpv,"is the media player"
 ,,mpv-mpris,"makes mpv controllable"
