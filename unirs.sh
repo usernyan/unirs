@@ -72,7 +72,7 @@ install_aur_pkg_manually() {
       sudo -u "$username" git -C "$working_dir" pull --force origin master
     }
   [ -d "$working_dir" ] || return 1
-  ( cd "$working_dir" && sudo -u "$username" makepkg --clean -si --noconfirm > /dev/null 2>&1) || return 1
+  ( cd "$working_dir" && sudo -u "$username" makepkg --clean -si --noconfirm > /dev/null) || return 1
 }
 
 install_pkg() {
@@ -84,8 +84,9 @@ install_aur_pkg() {
 }
 
 install_pkgbuild() {
-  curl -L "$1" --output "$source_dir/makepkg_temp/PKGBUILD" > /dev/null 2>&1
-  (cd "$source_dir" && sudo -u "$username" makepkg -si --clean --noconfirm > /dev/null 2>&1) || return 1
+  sudo -u "$username" mkdir -p "$source_dir/makepkg_temp/$2/"
+  sudo -u "$username" curl -L "$1" --output "$source_dir/makepkg_temp/$2/PKGBUILD" > /dev/null 2>&1 || return 1
+  (cd "$source_dir/makepkg_temp/$2" && sudo -u "$username" makepkg -si --clean --noconfirm )#> /dev/null 2>&1)
 }
 
 install_git_make() {
@@ -115,7 +116,7 @@ install_program_list() {
     sed -i "/$ s/$/\n/" /tmp/program_list.csv
   fi
 
-  mkdir -p "$source_dir/makepkg_temp"
+  sudo -u "$username" mkdir -p "$source_dir/makepkg_temp"
   trap 'rm -rf $source_dir/makepkg_temp' HUP INT QUIT TERM PWR EXIT
   while IFS=, read -r tag name source purpose; do
     [ -z "$name" ] && name="$source"
@@ -132,7 +133,7 @@ install_program_list() {
       install_aur_pkg "$source"
     elif [ "$tag" = "PKGBUILD" ]; then
       # A link directly to a PKGBUILD file
-      install_pkgbuild "$source"
+      install_pkgbuild "$source" "$name"
     elif [ "$tag" = "GIT_MAKEINSTALL" ]; then
       # A link to a git repo installed with 'make install'
       install_git_make "$source" "$name"
