@@ -93,9 +93,9 @@ install_git_make() {
   # 1 : repo url
   # 2 : folder name
   output_dir="$source_dir"/"$2"
-  sudo -u "$username" git -C "$source_dir" clone "$1" "$output_dir" --depth 1 --single-branch --no-tags -q || {
+  sudo -u "$username" git -C "$source_dir" clone "$1" "$output_dir" --depth 1 --single-branch --no-tags -q > /dev/null 2>&1 || {
     [ -d "$output_dir" ] || return 1
-    sudo -u "$username" git -C "$output_dir" pull
+    sudo -u "$username" git -C "$output_dir" pull > /dev/null 2>&1
   }
   make -C "$output_dir" > /dev/null 2>&1
   make --silent -C "$output_dir" install > /dev/null 2>&1
