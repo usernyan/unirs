@@ -86,7 +86,7 @@ install_aur_pkg() {
 install_pkgbuild() {
   sudo -u "$username" mkdir -p "$source_dir/makepkg_temp/$2/"
   sudo -u "$username" curl -L "$1" --output "$source_dir/makepkg_temp/$2/PKGBUILD" > /dev/null 2>&1 || return 1
-  (cd "$source_dir/makepkg_temp/$2" && sudo -u "$username" makepkg -si --clean --noconfirm )#> /dev/null 2>&1)
+  (cd "$source_dir/makepkg_temp/$2" && sudo -u "$username" makepkg -si --clean --noconfirm > /dev/null 2>&1)
 }
 
 install_git_make() {
