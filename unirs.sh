@@ -43,7 +43,7 @@ welcome_msg() {
 }
 
 install_msg() {
-  whiptail --title "Info" --yes-button "Ready!" --no-button "Not Ready Yet..." --yesno "The rest of the installation is automated. Just press <Ready!> to start it." 10 60 ||
+  whiptail --title "Info" --yes-button "Ready!" --no-button "Not Ready Yet..." --yesno "The rest of the installation is automated. Be aware it may kill your Firefox process to install some things. Just press <Ready!> to start it." 10 60 ||
   {
     clear
     exit 1
@@ -218,8 +218,8 @@ main() {
   rm -rf README.md LICENSE.txt .git
 
 
-  whiptail --title Warning! \
-    --msgbox "The following will close your user's firefox. Make sure your work is saved!" 10 50
+  # whiptail --title Warning! \
+  #   --msgbox "The following will close your user's firefox. Make sure your work is saved!" 10 50
   #TODO: create a default profile if none exist
   pkill -u "$username" firefox
   sudo -u "$name" firefox --headless >/dev/null 2>&1 &
