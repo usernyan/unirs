@@ -229,7 +229,7 @@ main() {
   profiles_ini="$browser_dir/profiles.ini"
   browser_profile="$( sed -n "/Default=.*\..*/ s/.*=//p" "$profiles_ini" )"
   # 2: install userChrome.css in PROFILE_DIR/chrome
-  profile_dir = "$browser_dir/$browser_profile"
+  profile_dir="$browser_dir/$browser_profile"
   mkdir "$profile_dir/chrome"
   cp .local/share/userChrome.css "$profile_dir/chrome"
   # 3: modify preferences so that:
