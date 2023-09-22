@@ -8,3 +8,7 @@ Run it with `sudo ./unirs.sh'`
 This project borrows heavily from Luke Smith's LARBS.
 
 This project is still in development, and doesn't install an entire system with full documentation yet!
+
+Some features:
+- Transparency on the status bar, terminal, and web browser (firefox)
+- Quick shortcuts to mounting, internet, and audio control.

@@ -38,6 +38,7 @@
 ,,networkmanager,"is for connecting to a network"
 ,,udisks2,"is for automatically mounting and unmounting"
 PKGBUILD,atkinson-hypermono,https://raw.githubusercontent.com/usernyan/atkinson-hypermono-archpkg/master/PKGBUILD,"is a highly legible monospaced font"
+AUR,,bashmount,"is for mounting"
 AUR,,otf-atkinson-hyperlegible,"is a highly legible font"
 AUR,,ttf-symbola,"is for symbolic unicode characters (used by mpv)"
 GIT_MAKEINSTALL,screenshot-script,https://github.com/usernyan/screenshot-script.git,"is for taking screenshots"
